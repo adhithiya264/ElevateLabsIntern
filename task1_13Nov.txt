@@ -1,0 +1,54 @@
+sudo nmap -sS IP.REDACTED
+
+Nmap scan report for IP.REDACTED
+Host is up (latency: REDACTED).
+Not shown: 994 closed tcp ports (reset)
+PORT    STATE    SERVICE
+21/tcp  filtered ftp
+22/tcp  filtered ssh
+23/tcp  filtered telnet
+53/tcp  open     domain
+80/tcp  open     http
+443/tcp open     https
+MAC Address: MAC.REDACTED (REDACTED)
+
+Nmap scan report for IP.REDACTED
+Host is up (latency: REDACTED).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+3306/tcp open  mysql
+MAC Address: MAC.REDACTED (REDACTED)
+
+Wireshark snippet:
+time: [REDACTED]  source: IP.REDACTED  destination: IP.REDACTED  ICMP length=42 Echo (ping) request id=REDACTED, seq=REDACTED, ttl=REDACTED (no response)
+time: [REDACTED]  source: IP.REDACTED  destination: IP.REDACTED  ICMP length=42 Echo (ping) request id=REDACTED, seq=REDACTED, ttl=REDACTED (no response)
+time: [REDACTED]  source: IP.REDACTED  destination: IP.REDACTED  ICMP length=42 Echo (ping) request id=REDACTED, seq=REDACTED, ttl=REDACTED (no response)
+time: [REDACTED]  source: IP.REDACTED  destination: IP.REDACTED  ICMP length=42 Echo (ping) request id=REDACTED, seq=REDACTED, ttl=REDACTED (no response)
+
+
+
+potential threats/risks through the open ports:
+
+21 (FTP) - Anonymous login could allow attackers to upload/download files.
+Brute-force attacks on weak FTP credentials.
+Cleartext credentials (FTP transmits username/password without encryption).
+
+22 (SSH)- Exploits on outdated SSH servers (e.g., OpenSSH vulnerabilities).
+Privilege escalation if root login allowed remotely.
+Misconfiguration (e.g., weak keys, default ports not changed).
+
+23 (Telnet)- Plaintext communication — credentials easily sniffed.
+Remote code execution vulnerabilities in old telnet daemons.
+Brute-force or default credentials (common in IoT devices).
+
+53 (DNS) - DNS amplification attacks (used in DDoS).
+Zone transfer (AXFR) if not restricted — leaks internal DNS data.
+Cache poisoning or spoofing (if not properly configured).
+
+80 (HTTP)- Web app vulnerabilities (XSS, SQL injection, RCE, etc.)
+Directory listing enabled — data leakage
+Default/old pages exposing sensitive info
+
+443 (HTTPS)- SSL/TLS misconfiguration (weak ciphers, expired certs).
+Web app exploits (same as port 80 — HTTPS doesn’t make the app itself secure).
+OpenSSL vulnerabilities (e.g., Heartbleed).
