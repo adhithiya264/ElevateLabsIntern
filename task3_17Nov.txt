@@ -1,0 +1,11 @@
+performed a scan on 'IP REDACTED'
+
+Severity:
+
+Critical - Oracle Database Unsupported Version Detection
+High - Oracle TNS Listener Remote Poisoning
+Medium - SMB Signing not required
+Medium - SSL Certificate Cannot Be Trusted
+Medium - SSL Self-Signed Certificate
+Medium - SSL Certificate Expiry
+Total 31 vulnerabilities where 16 are classified as INFO
